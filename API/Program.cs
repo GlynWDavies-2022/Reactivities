@@ -2,6 +2,7 @@
 // Services Container
 // -----------------------------------------------------------------------
 
+using Application.Activities.Queries;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
 
@@ -14,6 +15,9 @@ builder.Services.AddDbContext<AppDbContext>(options => {
 });
 
 builder.Services.AddCors();
+builder.Services.AddMediatR(
+    m => m.RegisterServicesFromAssemblyContaining<GetActivityList.Handler>()
+);
 
 // -----------------------------------------------------------------------
 // HTTP Request Pipeline
